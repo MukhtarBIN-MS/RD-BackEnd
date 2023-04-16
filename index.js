@@ -1,7 +1,8 @@
 // requiring dependencies
 require('dotenv').config()
 const express = require('express'),
-        app = express()
+        app = express(),
+        dbConnect = require('./models')
 
 
 //port to serve application on 
