@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const transcriptSchema = new mongoose.Schema({
 
-    referenceId:    {type: Number, required: true, unique: true},
+    referenceId:    {type: String, required: true, unique: true},
     degreeType:     {type: String, required: true},
     institution:    {type: String, required: true},
     matricNumber:   {type: String, required: true},
