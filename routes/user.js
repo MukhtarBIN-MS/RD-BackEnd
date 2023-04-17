@@ -4,7 +4,7 @@ const express = require('express'),
 
 router.route('/')
     .get()
-    .post()
+    .post(controllers.loginUser)
 
 router.route('/signup')
     .post(controllers.registerUser)

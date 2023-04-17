@@ -12,11 +12,11 @@ const createToken = (_id) => {
 //function to register new user 
 exports.registerUser = async (req, res) => {
 
-    let {email, matricNumber, password} = req.body
+    let {name, email, matricNumber, password} = req.body
 
    try {
     
-        const user = await User.signup(email, matricNumber, password)
+        const user = await User.signup(name, email, matricNumber, password)
 
         // create a token
         const token = createToken(user._id)
@@ -26,6 +26,26 @@ exports.registerUser = async (req, res) => {
    } catch (error) {
         res.status(400).json({error: error.message})
    }
+}
+
+// login logic for User
+exports.loginUser = async (req, res)=>{
+
+    const {email, password} = req.body 
+
+    try {
+    
+        const user = await User.login(email, password)
+
+        // create a token
+        const token = createToken(user._id)
+
+        res.status(200).json({email, token}) 
+
+    } catch (error) {
+         res.status(400).json({error: error.message})
+    }   
+   
 }
 
 module.exports = exports

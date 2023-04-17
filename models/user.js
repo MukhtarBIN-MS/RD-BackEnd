@@ -8,14 +8,15 @@ const userSchema = new mongoose.Schema({
     name: {type: String},
     email: {type: String, required: true},
     matricNumber: {type: String, required: true},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    isActive: {type: Boolean, default: true}
 
 }, {timestamps: true})
 
 
 
 // signup user function
-userSchema.statics.signup = async function (email, matricNumber, password) {
+userSchema.statics.signup = async function (name, email, matricNumber, password) {
 
     // check if all inputs are filled
     if(!email || !password || !matricNumber) {
@@ -45,10 +46,41 @@ userSchema.statics.signup = async function (email, matricNumber, password) {
     const hash = await bcrypt.hash(password, salt)
 
     // creating new user in database
-    const user = await this.create({email, matricNumber, password: hash})
+    const user = await this.create({name, email, matricNumber, password: hash})
 
     // returning the saved user
     return user
+}
+
+// function to login user
+userSchema.statics.login = async function (email, password) {
+
+    // validation
+    if(!email || !password){
+       throw Error('All fields must be filled')
+   }
+
+    // find an email in database   
+   const user = await this.findOne({email})
+
+    // not exist throw error   
+   if(!user){
+       throw Error('Incorrect email')
+   }
+
+    // if account inactive throw error    
+   if(!user.isActive){
+        throw Error('sorry your account is disabled')
+   }
+
+   const match = await bcrypt.compare(password, user.password)
+
+   if(!match){
+       throw Error('Incorrect password')
+   }
+
+   return user
+
 }
 
 const User = mongoose.model('User', userSchema)
