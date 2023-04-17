@@ -4,7 +4,8 @@ const express = require('express'),
         app = express(),
         dbConnect = require('./models'),
         bodyParser = require('body-parser'),
-        transcriptRoute = require('./routes/transcript')
+        transcriptRoutes = require('./routes/transcript')
+        userRoutes = require('./routes/user')
 
 //using bodyParser to access request body & parameter 
 app.use(bodyParser.urlencoded({extended: false}))
@@ -17,7 +18,8 @@ app.use((req, res, next)=>{
 })
 
 // using routes to reach various collections via controllers
-app.use('/api-v1/transcripts', transcriptRoute)
+app.use('/api-v1/transcripts', transcriptRoutes)
+app.use('/api-v1/users', userRoutes)
 
 //port to serve application on 
 app.listen(process.env.PORT ,()=>{
