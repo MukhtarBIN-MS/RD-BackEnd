@@ -28,6 +28,10 @@ exports.registerAdmin = async (req, res) => {
     
         const admin = await Admin.signup(email, institution, role)
 
+        const message = `Dear admin, \n this is inform you that an account has been created for you as an admin with the role: ${role} in institution:${institution}. \n please click on this link to set password and login http:localhost:6000/api-v1/admin/${admin._id} `
+
+        await Admin.sendEmail(email, message)
+
         // create a token
         const token = createToken(admin._id)
 
