@@ -4,7 +4,7 @@ const express = require('express'),
 
 router.route('/')
     .get(controllers.getAllAdmins)
-    .post()
+    .post(controllers.loginAdmin)
 
 router.route('/signup')
     .post(controllers.registerAdmin)

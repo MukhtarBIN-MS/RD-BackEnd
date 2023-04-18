@@ -97,6 +97,38 @@ adminSchema.statics.sendEmail = async function (email, message) {
     })
 }
 
+// function to login admin
+adminSchema.statics.login = async function (email, password) {
+
+    // validation
+    if(!email || !password){
+       throw Error('All fields must be filled')
+   }
+
+    // find an email in database   
+   const admin = await this.findOne({email})
+
+    // not exist throw error   
+   if(!admin){
+       throw Error('Incorrect email')
+   }
+
+    // if account inactive throw error    
+   if(!admin.isActive){
+        throw Error('sorry your account is disabled')
+   }
+
+   const match = await bcrypt.compare(password, admin.password)
+
+   if(!match){
+       throw Error('Incorrect password')
+   }
+
+   return admin
+
+}
+
+
 const Admin = mongoose.model('Admin', adminSchema)
 
 module.exports = Admin
