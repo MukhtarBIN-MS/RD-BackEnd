@@ -4,7 +4,7 @@ const express = require('express'),
         app = express(),
         dbConnect = require('./models'),
         bodyParser = require('body-parser'),
-        transcriptRoutes = require('./routes/transcript')
+        transcriptRoutes = require('./routes/transcript'),
         userRoutes = require('./routes/user'),
         adminRoutes = require('./routes/admin')
 
