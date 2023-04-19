@@ -18,6 +18,10 @@ app.use((req, res, next)=>{
     next()
 })
 
+app.get('/' ((req, res)=>{
+    res.json({message: 'welcome to recordDigita api'})
+}))
+
 // using routes to reach various collections via controllers
 app.use('/api-v1/transcripts', transcriptRoutes)
 app.use('/api-v1/users', userRoutes)
