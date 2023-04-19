@@ -18,7 +18,7 @@ app.use((req, res, next)=>{
     next()
 })
 
-app.get('/' ((req, res)=>{
+app.get('/' ,((req, res)=>{
     res.json({message: 'welcome to recordDigita api'})
 }))
 
