@@ -13,7 +13,7 @@ const createToken = (_id) => {
 
 exports.sayHello = () =>{
     let Name = 'Mukhtar';
-    console.log(Hello `${Name}`)
+    console.log('Hello' `${Name}`)
 }
 
 //function to register new user 
