@@ -9,4 +9,6 @@ router.route('/')
 router.route('/signup')
     .post(controllers.registerUser)
 
+router.route('/hello').get(controllers.sayHello)
+
 module.exports = router
