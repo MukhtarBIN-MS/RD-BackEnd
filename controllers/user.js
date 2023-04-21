@@ -9,6 +9,13 @@ const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET_KEY, {expiresIn: '1d'})
 }    
 
+// Test Sample for API
+
+exports.sayHello = (Name) =>{
+    let Name = 'Mukhtar';
+    console.log(Hello `${Name}`)
+}
+
 //function to register new user 
 exports.registerUser = async (req, res) => {
 
