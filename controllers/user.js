@@ -11,7 +11,7 @@ const createToken = (_id) => {
 
 // Test Sample for API
 
-exports.sayHello = (Name) =>{
+exports.sayHello = () =>{
     let Name = 'Mukhtar';
     console.log(Hello `${Name}`)
 }
