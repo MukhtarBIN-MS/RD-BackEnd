@@ -9,6 +9,6 @@ router.route('/')
 router.route('/signup')
     .post(controllers.registerUser)
 
-router.route('/hello').get(controllers.sayHello)
+router.get('/hello', controllers.sayHello);
 
 module.exports = router
