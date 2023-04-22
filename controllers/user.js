@@ -11,8 +11,8 @@ const createToken = (_id) => {
 
 // Test Sample for API
 
-exports.sayHello = () =>{
-    console.log('It Works');
+exports.sayHello = (req, res) => {
+    res.json({ info:'It works'})
 }
 
 //function to register new user 
